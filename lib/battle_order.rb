@@ -1,0 +1,2 @@
+class BattleOrder
+end
