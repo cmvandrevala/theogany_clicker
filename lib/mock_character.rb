@@ -1,5 +1,13 @@
 class MockCharacter
+  
   Surrogate.endow(self)
-  define_accessor :name
-  define(:action_points) { 1 }
+  
+  define(:initialize) do |params|
+    @name = params[:name]
+    @action_points = params[:action_points]
+  end
+  
+  define_reader :name
+  define_reader :action_points
+  
 end

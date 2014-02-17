@@ -6,49 +6,41 @@ describe BattleRoster do
   
   before(:each) do
     @roster = BattleRoster.new
-    @character_one = MockCharacter.new
-    @character_two = MockCharacter.new
-    @character_three = MockCharacter.new
+    @character_one = MockCharacter.new({name: "Mockie Mockerson", action_points: 1})
+    @character_two = MockCharacter.new({name: "Dockie Dockerson", action_points: 2})
+    @character_three = MockCharacter.new({name: "Rockie Rockerson", action_points: 3})
   end
   
   it "adds a character" do
-    @character_one.name = "Mockie Mockerson"
     @roster.add(@character_one)
     @roster.list_characters.should == ["Mockie Mockerson"]
   end
   
   it "adds another character" do
-    @character_one.name = "Mockie Mockerson"
-    @character_two.name = "Happy Happerson"
     @roster.add(@character_one)
     @roster.add(@character_two)
-    @roster.list_characters.should == ["Mockie Mockerson", "Happy Happerson"]
+    @roster.list_characters.should == ["Mockie Mockerson", "Dockie Dockerson"]
   end
   
   it "does not add a character with a duplicate name" do
-    @character_one.name = "one"
-    @character_two.name = "one"
     @roster.add(@character_one)
-    @roster.add(@character_two)
-    @roster.list_characters.should == ["one"]
+    @roster.add(@character_one)
+    @roster.list_characters.should == ["Mockie Mockerson"]
   end
   
   it "displays the probability of choosing a character among two" do
-    @character_one.name = "one"
-    @character_two.name = "two"
     @roster.add(@character_one)
     @roster.add(@character_two)
-    @roster.probability(@character_one).should == 1/2
+    @roster.probability(@character_one).should == 1.0/3.0
+    @roster.probability(@character_one).should_not == 0.0
   end
   
   it "displays the probability of choosing a character among three" do
-    @character_one.name = "one"
-    @character_two.name = "two"
-    @character_three.name = "three"
     @roster.add(@character_one)
     @roster.add(@character_two)
     @roster.add(@character_three)
-    @roster.probability(@character_one).should == 1/3
+    @roster.probability(@character_two).should == 1.0/3.0
+    @roster.probability(@character_two).should_not == 0.0
   end
   
 end

@@ -16,11 +16,6 @@ describe Character do
     @character.name.should == "Pookie Pookerson"
   end
   
-  it "name can be updated" do
-    @character.name = "Bookie Bookerson"
-    @character.name.should == "Bookie Bookerson"
-  end
-  
   it "has a number of action points" do
     @character.action_points.should == 1
   end
