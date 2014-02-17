@@ -11,7 +11,7 @@ class BattleRoster
     increment_action_points(new_character) if not_in_list?(new_character)
     store_character(new_character) if not_in_list?(new_character)
   end
-  # 
+
   def list_characters
     @character_names
   end
