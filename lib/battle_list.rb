@@ -1,0 +1,2 @@
+class BattleList
+end
