@@ -34,7 +34,4 @@ describe BattleList do
     @battle_list.order.length.should == 6
   end
   
-  xit "should be randomized" do
-  end
-  
 end

@@ -14,11 +14,11 @@ describe Character do
   
   describe "initialization" do
   
-    it "has a name" do
+    it "creates a name" do
       @character.name.should == "Pookie Pookerson"
     end
   
-    it "has a number of moves" do
+    it "creates a number of moves" do
       @character.moves.should == 1
     end
   
@@ -30,7 +30,7 @@ describe Character do
       @character.action_points.should == 7
     end
     
-    it "increase by one" do
+    it "can increase by one" do
       @character.increase
       @character.action_points.should == 8
     end
