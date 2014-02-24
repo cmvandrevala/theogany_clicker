@@ -104,6 +104,11 @@ describe BattleRoster do
       @roster.next_move
       @roster.action_points.should == { "Mockie Mockerson" => 8, "Dockie Dockerson" => 8, "Rockie Rockerson" => 8 }
     end
+    
+    it "spends the action points of a single character" do
+      @roster.take_action("Mockie Mockerson", 2)
+      @roster.action_points.should == { "Mockie Mockerson" => 5, "Dockie Dockerson" => 7, "Rockie Rockerson" => 7 }
+    end
   
   end
   

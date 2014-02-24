@@ -4,7 +4,7 @@ require 'character'
 
 Shoes.app width: 300, height: 300 do
   background "white"
-  title "Fight!"
+  tagline strong("Fight!")
   
   $roster = BattleRoster.new
   
@@ -27,21 +27,17 @@ Shoes.app width: 300, height: 300 do
     
     button "Display Roster" do
       window title: "Roster" do
+        para "Moves\n"
         $roster.movements.each do |name, moves|
           para "#{name}\t#{moves.to_i}\n"
         end
-      end
-    end
-    
-    button "Display Battle Order" do
-      window title: "Battle Order" do
-        @order = []
-        $roster.movements.each do |name, moves|
-          moves.to_i.times { @order << name }
+        para "\nAction Points\n"
+        $roster.action_points.each do |name, ap|
+          para "#{name}\t#{ap.to_i}\n"
         end
-        @order.shuffle!
-        @order.each do |name|
-          para "#{name}\n"
+        para "\nStatuses\n"
+        $roster.statuses.each do |name, status|
+          para "#{name}\t#{status.to_s}\n"
         end
       end
     end

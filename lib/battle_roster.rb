@@ -78,6 +78,12 @@ class BattleRoster
     end
   end
   
+  def take_action(character_name, points)
+    @character_list.each do |character|
+      return character.spend_ap(points) if character.name == character_name
+    end
+  end
+  
   private
 
   def not_in_list?(new_character)
