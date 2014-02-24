@@ -7,20 +7,13 @@ describe BattleList do
   
   before(:each) do
     @roster = BattleRoster.new
-    @character_one = MockCharacter.new({name: "Mockie Mockerson", moves: 1})
-    @character_two = MockCharacter.new({name: "Dockie Dockerson", moves: 2})
-    @character_three = MockCharacter.new({name: "Rockie Rockerson", moves: 3})
-    @roster.add(@character_one)
-    @roster.add(@character_two)
-    @roster.add(@character_three)
+    @roster.add(MockCharacter.new({name: "Mockie Mockerson", moves: 1}))
+    @roster.add(MockCharacter.new({name: "Dockie Dockerson", moves: 2}))
+    @roster.add(MockCharacter.new({name: "Rockie Rockerson", moves: 3}))
     @battle_list = BattleList.new(@roster)
   end
   
-  it "creates a battle list from a roster" do
-    @battle_list.order.should be_an_instance_of Array
-  end
-  
-  it "includes only the roster characters in the order" do
+  it "includes the roster characters in the order" do
     @battle_list.order.each do |character|
       flag = false
       flag = true if character == "Mockie Mockerson"
