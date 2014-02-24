@@ -9,10 +9,12 @@ class MockCharacter
     @status = :active
   end
   
-  define(:has_died)   { @status = :dead }
-  define(:skip_turns) { @status = :skip }
-  define(:increase)   { @action_points += 1 }
-  define(:spend) do |number|
+  define(:has_died)             { @status = :dead }
+  define(:has_been_knocked_out) { @status = :unconscious }
+  define(:is_inactive)          { @status = :inactive }
+  define(:is_active)            { @status = :active }
+  define(:increase_ap)          { @action_points += 1 }
+  define(:spend_ap) do |number|
     @action_points -= number
   end
   
