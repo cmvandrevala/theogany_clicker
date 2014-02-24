@@ -10,22 +10,72 @@ class BattleRoster
     store_character(new_character) if not_in_list?(new_character)
   end
 
-  def list_characters
+  def character_names
     character_names = []
     @character_list.each { |character| character_names << character.name }
     character_names
   end
   
-  def probability(character)
-    character.moves.to_f/@total_moves.to_f
+  def movements(character_name = nil)
+    if character_name != nil
+      @character_list.each do |character|
+        return character.moves if character.name == character_name
+      end
+    elsif character_name == nil
+      movements = Hash.new
+      @character_list.each do |character|
+        movements[character.name] = character.moves
+      end
+      movements
+    end
   end
   
-  def movements
-    movements = Hash.new
-    @character_list.each do |character|
-      movements[character.name] = character.moves
+  def statuses(character_name = nil)
+    if character_name != nil
+      @character_list.each do |character|
+        return character.status if character.name == character_name
+      end
+    elsif character_name == nil
+      statuses = Hash.new
+      @character_list.each do |character|
+        statuses[character.name] = character.status
+      end
+      statuses
     end
-    movements
+  end
+    
+  def action_points(character_name = nil)
+    if character_name != nil
+      @character_list.each do |character|
+        return character.action_points if character.name == character_name
+      end
+    elsif character_name == nil
+      points = Hash.new
+      @character_list.each do |character|
+        points[character.name] = character.action_points
+      end
+      points
+    end
+  end
+  
+  def probability(character_name = nil)
+    if character_name != nil
+      @character_list.each do |character|
+        return character.moves.to_f/@total_moves.to_f if character.name == character_name
+      end
+    elsif character_name == nil
+      probabilities = Hash.new
+      @character_list.each do |character|
+        probabilities[character.name] = character.moves.to_f/@total_moves.to_f
+      end
+      probabilities
+    end
+  end
+  
+  def next_move
+    @character_list.each do |character|
+      character.increase_ap
+    end
   end
   
   private
