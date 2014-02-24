@@ -1,3 +1,4 @@
+require 'battle_list'
 require 'battle_roster'
 require 'character'
 
@@ -27,14 +28,24 @@ Shoes.app width: 300, height: 300 do
     button "Display Roster" do
       window title: "Roster" do
         $roster.movements.each do |name, moves|
-          para "#{name} #{moves.to_i}\n"
+          para "#{name}\t#{moves.to_i}\n"
+        end
+      end
+    end
+    
+    button "Display Battle Order" do
+      window title: "Battle Order" do
+        @order = []
+        $roster.movements.each do |name, moves|
+          moves.to_i.times { @order << name }
+        end
+        @order.shuffle!
+        @order.each do |name|
+          para "#{name}\n"
         end
       end
     end
     
   }
-  
-  
-  
   
 end
