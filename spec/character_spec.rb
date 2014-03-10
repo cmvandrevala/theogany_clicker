@@ -26,11 +26,11 @@ describe Character do
       @character.moves.should == 1
     end
     
-    it "creates a character with a default status" do
+    it "creates a character with a default 'active' status" do
       @character.status.should == :active
     end
     
-    it "creates a character with a default number of action points" do
+    it "creates a character with seven default action points" do
       @character.action_points.should == 7
     end
   
@@ -51,6 +51,11 @@ describe Character do
     it "can be spent on an action" do
       @character.spend_ap(5)
       @character.action_points.should == 2
+    end
+    
+    it "can be spent down to zero minimum" do
+      @character.spend_ap(7)
+      @character.action_points.should == 0
     end
     
     it "raises an exception if you try to spend too many" do

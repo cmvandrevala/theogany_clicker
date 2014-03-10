@@ -11,7 +11,7 @@ describe BattleRoster do
     @roster.add(MockCharacter.new({name: "Rockie Rockerson", moves: 3}))
   end
   
-  describe "adding characters to the list" do
+  describe "adding to the roster" do
     
     it "adds a single character" do
       new_roster = BattleRoster.new
@@ -19,9 +19,19 @@ describe BattleRoster do
       new_roster.character_names.should == ["Sockie Sockerson"]
     end
   
-    it "does not add a character with a duplicate name" do
+    it "does not add a duplicate character" do
       @roster.add(MockCharacter.new({name: "Mockie Mockerson", moves: 1}))
       @roster.character_names.should == ["Mockie Mockerson", "Dockie Dockerson", "Rockie Rockerson"]
+    end
+    
+    it "does not add a character with a duplicate name" do
+      @roster.add(MockCharacter.new({name: "Mockie Mockerson", moves: 5}))
+      @roster.character_names.should == ["Mockie Mockerson", "Dockie Dockerson", "Rockie Rockerson"]
+    end
+    
+    it "adds a character with a duplicate number of moves" do
+      @roster.add(MockCharacter.new({name: "Sockie Sockerson", moves: 1}))
+      @roster.character_names.should == ["Mockie Mockerson", "Dockie Dockerson", "Rockie Rockerson", "Sockie Sockerson"]
     end
   
   end

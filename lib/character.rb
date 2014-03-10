@@ -15,7 +15,7 @@ class Character
   
   def spend_ap(number_of_points)
     raise "You spent too many points!" if number_of_points > @action_points
-    @action_points = new_ap(number_of_points) if new_ap(number_of_points) > 0
+    @action_points = new_ap(number_of_points) if new_ap(number_of_points) >= 0
   end
   
   def has_died

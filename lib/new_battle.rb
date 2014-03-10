@@ -27,7 +27,13 @@ list.order.each do |name|
   if input == 1
     puts "How much?"
     amount = gets.chomp.to_i
-    roster.take_action(name, amount)
+    if amount > roster.action_points(name)
+      puts "That's too expensive, loser..."
+      roster.next_move
+      next
+    else
+      roster.take_action(name, amount)
+    end
   elsif input == 2
     puts "Ok, moving on."
   else
