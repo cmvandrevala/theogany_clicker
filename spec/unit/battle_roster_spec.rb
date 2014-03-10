@@ -60,7 +60,7 @@ describe BattleRoster do
   
   end
   
-  describe "viewing character stats" do
+  describe "viewing tables of character stats" do
     
     context "names" do
       
