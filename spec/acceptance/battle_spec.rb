@@ -17,7 +17,7 @@ describe "A Battle" do
     @roster.action_points.should == {"Mockie Mockerson" => 10, "Dockie Dockerson" => 10, "Rockie Rockerson" => 10}
   end
 
-  it "correctly goes through one turn of a battle with one action" do
+  it "correctly goes through one full turn of a battle with one action" do
     points_to_spend = 5
     @roster.next_move
     @roster.take_action("Mockie Mockerson", points_to_spend)
