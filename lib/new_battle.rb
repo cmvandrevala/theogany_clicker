@@ -3,13 +3,15 @@ load 'battle_roster.rb'
 load 'character.rb'
 
 a = Character.new({name: "Robert Normango Rossmagango", moves: 2})
-b = Character.new({name: "b", moves: 2})
-c = Character.new({name: "c", moves: 2})
-d = Character.new({name: "d", moves: 2})
-e = Character.new({name: "e", moves: 2})
-f = Character.new({name: "f", moves: 2})
-g = Character.new({name: "g", moves: 2})
-h = Character.new({name: "h", moves: 2})
+b = Character.new({name: "Laz", moves: 2})
+c = Character.new({name: "Lord Kelvin", moves: 3})
+d = Character.new({name: "Mallow Gaiman", moves: 2})
+e = Character.new({name: "Emily Lee", moves: 2})
+f = Character.new({name: "Tatiana Marcus", moves: 2})
+
+g = Character.new({name: "Alice the Asian Woman", moves: 2})
+h = Character.new({name: "Event Hulk Rising", moves: 2})
+i = Character.new({name: "Sgt. Clark", moves: 3})
 
 roster = BattleRoster.new
 roster.add(a)
@@ -18,13 +20,14 @@ roster.add(c)
 roster.add(d)
 roster.add(e)
 roster.add(f)
-roster.add(g)
-roster.add(h)
+#roster.add(g)
+#roster.add(h)
+#roster.add(i)
 
 list = BattleList.new(roster)
 round = 1
 
-20.times do
+100.times do
 
   puts
   puts
