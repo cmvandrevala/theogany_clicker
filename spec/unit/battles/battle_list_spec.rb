@@ -20,8 +20,24 @@ describe BattleList do
     end
   end
   
-  it "has a total length equal to the total number of moves" do
-    @battle_list.order.length.should == 6
+  it "has a total length equal to the total number of moves times 100 rounds" do
+    @battle_list.order.length.should == 600
+  end
+  
+  it "starts each character off with a half of their maximum action points" do
+    @battle_list.current_ap.should == {"Bob" => 5, "Sam" => 5, "Chris" => 6}
+  end
+  
+  it "increments character's ap each turn" do
+    @battle_list.next_turn
+    @battle_list.current_ap.should == {"Bob" => 6, "Sam" => 6, "Chris" => 7}
+  end
+  
+  it "keeps track of who's turn it is" do
+    @battle_list.order.each do |character|
+      @battle_list.current_player.should == character
+      @battle_list.next_turn
+    end
   end
   
 end

@@ -20,6 +20,7 @@ class MockBattleRoster
   end
       
   define(:maximum_action_points) do |params = nil|
+    {"Bob" => 10, "Sam" => 11, "Chris" => 12}
   end
   
 end
