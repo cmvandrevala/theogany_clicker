@@ -54,7 +54,7 @@ describe ItemParameters do
   describe "initialization of a custom item" do
   
     before(:each) do
-      @params = ItemParameters.new({name: "Mary", type: :large_pistol, weight: 10, description: "This is a gun!"})
+      @params = ItemParameters.new({name: "Mary", type: :watch, weight: 10, description: "This is a gun!"})
     end
   
     it "has a name" do
@@ -67,7 +67,7 @@ describe ItemParameters do
     end
   
     it "has a type" do
-      @params.type.should == :large_pistol
+      @params.type.should == :watch
     end
   
     it "has an adjustable type" do
