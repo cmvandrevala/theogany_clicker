@@ -6,13 +6,13 @@ describe ItemParameters do
   
   describe "mocking in surrogate" do
     
-    it "implements the methods defined in MockGun" do
+    it "implements the methods defined in MockItemParameters" do
       MockItemParameters.should be_substitutable_for(ItemParameters)
     end
     
   end
   
-  describe "initialization of a default gun" do
+  describe "initialization of a default item" do
   
     before(:each) do
       @params = ItemParameters.new({name: "Bob", type: :small_pistol, weight: 100})
@@ -51,7 +51,7 @@ describe ItemParameters do
   
   end
   
-  describe "initialization of a default gun" do
+  describe "initialization of a custom item" do
   
     before(:each) do
       @params = ItemParameters.new({name: "Mary", type: :large_pistol, weight: 10, description: "This is a gun!"})
