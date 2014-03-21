@@ -2,12 +2,13 @@ require 'equipment/item_parameters'
 
 class Gun < ItemParameters
   
-  attr_reader :shots
+  attr_reader :shots, :features
   
   def initialize(parameters)
     parameters = defaults.merge(parameters)
     @base_shots = parameters[:base_shots]
     @base_range = parameters[:base_range]
+    @features = []
     super
   end
   
