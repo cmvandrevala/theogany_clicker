@@ -1,6 +1,7 @@
 require 'surrogate/rspec'
-require 'mock_character'
-require 'battle_roster'
+require 'characters/mock_character'
+require 'battles/battle_roster'
+require 'battles/mock_battle_roster'
 
 describe BattleRoster do
   
@@ -11,12 +12,20 @@ describe BattleRoster do
     @roster.add(MockCharacter.new({name: "Rockie Rockerson", moves: 3}))
   end
   
+  describe "mocking in surrogate" do
+  
+    it "implements the methods defined in MockCharacter" do
+      MockBattleRoster.should be_substitutable_for(BattleRoster)
+    end
+  
+  end
+  
   describe "adding to the roster" do
     
     it "adds a single character" do
       new_roster = BattleRoster.new
-      new_roster.add(MockCharacter.new({name: "Sockie Sockerson", moves: 4}))
-      new_roster.character_names.should == ["Sockie Sockerson"]
+      new_roster.add(MockCharacter.new)
+      new_roster.character_names.should == ["Bob"]
     end
   
     it "does not add a duplicate character" do
@@ -36,7 +45,7 @@ describe BattleRoster do
   
   end
   
-  describe "battle statistics" do
+  describe "calculating battle statistics" do
     
     context "movement probability" do
       
@@ -60,7 +69,7 @@ describe BattleRoster do
   
   end
   
-  describe "viewing tables of character stats" do
+  describe "viewing tables of static character stats" do
     
     context "names" do
       
@@ -82,14 +91,14 @@ describe BattleRoster do
       
     end
     
-    context "action points" do
+    context "maximum number of action points" do
       
-      it "gives a table of the action points of each character" do
-        @roster.action_points.should == { "Mockie Mockerson" => 7, "Dockie Dockerson" => 7, "Rockie Rockerson" => 7 }
+      it "gives a table of the maximum number of action points of each character" do
+        @roster.maximum_action_points.should == { "Mockie Mockerson" => 10, "Dockie Dockerson" => 10, "Rockie Rockerson" => 10 }
       end
       
       it "gives the number of action points for one character" do
-        @roster.action_points("Mockie Mockerson").should == 7
+        @roster.maximum_action_points("Mockie Mockerson").should == 10
       end
       
     end
@@ -104,20 +113,6 @@ describe BattleRoster do
         @roster.statuses("Mockie Mockerson").should == :active
       end
       
-    end
-  
-  end 
-  
-  describe "adjusting character stats" do
-
-    it "increases the action points of each character at the beginning of a move" do
-      @roster.next_move
-      @roster.action_points.should == { "Mockie Mockerson" => 8, "Dockie Dockerson" => 8, "Rockie Rockerson" => 8 }
-    end
-    
-    it "spends the action points of a single character" do
-      @roster.take_action("Mockie Mockerson", 2)
-      @roster.action_points.should == { "Mockie Mockerson" => 5, "Dockie Dockerson" => 7, "Rockie Rockerson" => 7 }
     end
   
   end

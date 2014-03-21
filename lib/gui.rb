@@ -1,8 +1,8 @@
-require 'battle_list'
-require 'battle_roster'
-require 'character'
+require 'battles/battle_list'
+require 'battles/battle_roster'
+require 'characters/character'
 
-Shoes.app width: 300, height: 300 do
+Shoes.app width: 500, height: 500 do
   background "white"
   tagline strong("Fight!")
   
@@ -31,8 +31,8 @@ Shoes.app width: 300, height: 300 do
         $roster.movements.each do |name, moves|
           para "#{name}\t#{moves.to_i}\n"
         end
-        para "\nAction Points\n"
-        $roster.action_points.each do |name, ap|
+        para "\nMaximum Action Points\n"
+        $roster.maximum_action_points.each do |name, ap|
           para "#{name}\t#{ap.to_i}\n"
         end
         para "\nStatuses\n"

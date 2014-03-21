@@ -6,7 +6,7 @@ class BattleRoster
   end
 
   def add(new_character)
-    increment_action_points(new_character) if not_in_list?(new_character)
+    increment_moves(new_character) if not_in_list?(new_character)
     store_character(new_character) if not_in_list?(new_character)
   end
 
@@ -44,7 +44,7 @@ class BattleRoster
     end
   end
     
-  def action_points(character_name = nil)
+  def maximum_action_points(character_name = nil)
     if character_name != nil
       @character_list.each do |character|
         return character.action_points if character.name == character_name
@@ -72,18 +72,6 @@ class BattleRoster
     end
   end
   
-  def next_move
-    @character_list.each do |character|
-      character.increase_ap
-    end
-  end
-  
-  def take_action(character_name, points)
-    @character_list.each do |character|
-      return character.spend_ap(points) if character.name == character_name
-    end
-  end
-  
   private
 
   def not_in_list?(new_character)
@@ -93,7 +81,7 @@ class BattleRoster
     return true
   end
   
-  def increment_action_points(new_character)
+  def increment_moves(new_character)
     @total_moves += new_character.moves
   end
   
