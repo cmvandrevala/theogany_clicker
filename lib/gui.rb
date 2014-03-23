@@ -5,7 +5,7 @@ require 'battles/battle_roster'
 roster = BattleRoster.new
 
 Shoes.app :width => 500, :height => 500 do
-  
+    
   background "#dde"
   
   stack {
@@ -64,5 +64,5 @@ Shoes.app :width => 500, :height => 500 do
     end
     
   }
-  
+
 end
