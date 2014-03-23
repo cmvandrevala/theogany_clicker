@@ -5,4 +5,5 @@ ruby '2.1.0'
 gem 'rspec'
 gem 'guard-rspec'
 gem 'surrogate'
+gem 'green_shoes'
 

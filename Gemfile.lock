@@ -1,6 +1,10 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    atk (2.2.0)
+      glib2 (= 2.2.0)
+    cairo (1.12.8)
+      pkg-config
     celluloid (0.15.2)
       timers (~> 1.1.0)
     celluloid-io (0.15.0)
@@ -10,6 +14,16 @@ GEM
     diff-lcs (1.2.5)
     ffi (1.9.3)
     formatador (0.2.4)
+    gdk_pixbuf2 (2.2.0)
+      glib2 (= 2.2.0)
+    glib2 (2.2.0)
+      pkg-config
+    green_shoes (1.1.374)
+      gtk2
+    gtk2 (2.2.0)
+      atk (= 2.2.0)
+      gdk_pixbuf2 (= 2.2.0)
+      pango (= 2.2.0)
     guard (2.5.1)
       formatador (>= 0.2.4)
       listen (~> 2.6)
@@ -24,9 +38,13 @@ GEM
       celluloid-io (>= 0.15.0)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
-    lumberjack (1.0.4)
+    lumberjack (1.0.5)
     method_source (0.8.2)
     nio4r (1.0.0)
+    pango (2.2.0)
+      cairo (>= 1.12.5)
+      glib2 (= 2.2.0)
+    pkg-config (1.1.5)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -44,13 +62,14 @@ GEM
     rspec-mocks (2.14.6)
     slop (3.5.0)
     surrogate (0.7.0)
-    thor (0.18.1)
+    thor (0.19.0)
     timers (1.1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  green_shoes
   guard-rspec
   rspec
   surrogate

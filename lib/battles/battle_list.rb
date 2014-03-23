@@ -1,21 +1,25 @@
 class BattleList
   
-  attr_reader :order, :current_ap
+  attr_reader :order, :current_aps
   
   def initialize(roster)
     @turn = 0
     @order = initialize_order(roster)
-    @current_ap = initialize_ap(roster)
+    @current_aps = initialize_ap(roster)
   end
   
   def current_player
     @order[@turn]
   end
   
+  def current_ap
+    @current_aps[current_player]
+  end
+  
   def next_turn
     @turn += 1
-    @current_ap.each do |name, ap|
-      @current_ap[name] = ap + 1
+    @current_aps.each do |name, ap|
+      @current_aps[name] = ap + 1 if ap < 10
     end
   end
   

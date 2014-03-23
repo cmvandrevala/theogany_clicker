@@ -25,12 +25,12 @@ describe BattleList do
   end
   
   it "starts each character off with a half of their maximum action points" do
-    @battle_list.current_ap.should == {"Bob" => 5, "Sam" => 5, "Chris" => 6}
+    @battle_list.current_aps.should == {"Bob" => 5, "Sam" => 5, "Chris" => 6}
   end
   
   it "increments character's ap each turn" do
     @battle_list.next_turn
-    @battle_list.current_ap.should == {"Bob" => 6, "Sam" => 6, "Chris" => 7}
+    @battle_list.current_aps.should == {"Bob" => 6, "Sam" => 6, "Chris" => 7}
   end
   
   it "keeps track of who's turn it is" do
@@ -38,6 +38,30 @@ describe BattleList do
       @battle_list.current_player.should == character
       @battle_list.next_turn
     end
+  end
+  
+  it "keeps track of the initial action points of the first character" do
+    @battle_list.current_ap.should == @battle_list.current_aps[@battle_list.current_player]
+  end
+  
+  it "returns the action points of a character after one turn" do
+    @battle_list.next_turn
+    @battle_list.current_ap.should == @battle_list.current_aps[@battle_list.current_player]
+  end
+  
+  it "reutnrs the action points of a character after two turns" do
+    2.times { @battle_list.next_turn }
+    @battle_list.current_ap.should == @battle_list.current_aps[@battle_list.current_player]
+  end  
+  
+  it "reutnrs the action points of a character after multiple turns" do
+    3.times { @battle_list.next_turn }
+    @battle_list.current_ap.should == @battle_list.current_aps[@battle_list.current_player]
+  end
+  
+  it "returns ten action points after many rounds with no actions taken" do
+    50.times { @battle_list.next_turn }
+    @battle_list.current_ap.should == 10
   end
   
 end
