@@ -16,6 +16,10 @@ class BattleList
     @current_aps[current_player]
   end
   
+  def spend_ap(number_of_action_points)
+    @current_aps[current_player] -= number_of_action_points
+  end
+  
   def next_turn
     @turn += 1
     @current_aps.each do |name, ap|

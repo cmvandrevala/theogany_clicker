@@ -47,8 +47,15 @@ Shoes.app :width => 500, :height => 500 do
     button "Start Battle" do
       window title: "Start Battle" do
         battle_list = BattleList.new(roster)
-        para "Start Battle\n"
+        para "Start Battle\n\n"
         @current_player = para "#{battle_list.current_player} #{battle_list.current_ap}\n"
+        edit_line { |input| @ap = input.text }
+        button "Spend AP" do
+          battle_list.spend_ap(@ap.to_i)
+          battle_list.next_turn
+          @current_player.replace "#{battle_list.current_player} #{battle_list.current_ap}\n"          
+        end
+        para "\n"
         button "Next Turn!" do
           battle_list.next_turn
           @current_player.replace "#{battle_list.current_player} #{battle_list.current_ap}\n"

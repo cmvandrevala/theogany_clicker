@@ -49,12 +49,12 @@ describe BattleList do
     @battle_list.current_ap.should == @battle_list.current_aps[@battle_list.current_player]
   end
   
-  it "reutnrs the action points of a character after two turns" do
+  it "returns the action points of a character after two turns" do
     2.times { @battle_list.next_turn }
     @battle_list.current_ap.should == @battle_list.current_aps[@battle_list.current_player]
   end  
   
-  it "reutnrs the action points of a character after multiple turns" do
+  it "returns the action points of a character after multiple turns" do
     3.times { @battle_list.next_turn }
     @battle_list.current_ap.should == @battle_list.current_aps[@battle_list.current_player]
   end
@@ -62,6 +62,12 @@ describe BattleList do
   it "returns ten action points after many rounds with no actions taken" do
     50.times { @battle_list.next_turn }
     @battle_list.current_ap.should == 10
+  end
+  
+  it "allows you to spend ap" do
+    initial_ap = @battle_list.current_aps[@battle_list.current_player]
+    @battle_list.spend_ap(5)
+    @battle_list.current_ap.should == initial_ap - 5
   end
   
 end
