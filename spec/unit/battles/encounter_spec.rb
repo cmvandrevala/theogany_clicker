@@ -1,18 +1,18 @@
 require 'surrogate/rspec'
 require 'characters/mock_character'
 require 'battles/mock_battle_roster'
-require 'battles/battle_list'
+require 'battles/encounter'
 
-describe BattleList do
+describe Encounter do
   
   before(:each) do
     @roster = MockBattleRoster.new
-    @battle_list = BattleList.new(@roster)
+    @battle_list = Encounter.new(@roster)
   end
   
   describe "setting up the battle order" do
   
-    it "includes the roster characters in the order" do
+    it "includes only the roster characters" do
       @battle_list.order.each do |character|
         flag = false
         flag = true if character == "Bob"
@@ -24,6 +24,12 @@ describe BattleList do
     
     it "has a total length equal to the total number of moves times 100 rounds" do
       @battle_list.order.length.should == 600
+    end
+    
+    it "uses up all character moves before going to the next round" do
+      @battle_list.order[0, 6].count("Bob").should == 1
+      @battle_list.order[0, 6].count("Sam").should == 2
+      @battle_list.order[0, 6].count("Chris").should == 3
     end
   
   end
