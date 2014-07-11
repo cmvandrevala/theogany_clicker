@@ -1,10 +1,13 @@
 source 'https://rubygems.org'
 
-ruby '2.1.0'
+ruby '2.1.2'
 
-gem 'rspec'
-gem 'guard-rspec'
-gem 'guard-cucumber'
-gem 'surrogate'
 gem 'green_shoes'
-gem 'cucumber'
+
+group :development, :test do
+  gem 'rspec'
+  gem 'guard-rspec'
+  gem 'guard-cucumber'
+  gem 'surrogate'
+  gem 'cucumber'
+end
