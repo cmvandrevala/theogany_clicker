@@ -18,18 +18,18 @@ describe Encounter do
         flag = true if character == "Bob"
         flag = true if character == "Sam"
         flag = true if character == "Chris"
-        flag.should == true
+        expect(flag).to eq(true)
       end
     end
     
     it "has a total length equal to the total number of moves times 100 rounds" do
-      @battle_list.order.length.should == 600
+      expect(@battle_list.order.length).to eq(600)
     end
     
     it "uses up all character moves before going to the next round" do
-      @battle_list.order[0, 6].count("Bob").should == 1
-      @battle_list.order[0, 6].count("Sam").should == 2
-      @battle_list.order[0, 6].count("Chris").should == 3
+      expect(@battle_list.order[0, 6].count("Bob")).to eq(1)
+      expect(@battle_list.order[0, 6].count("Sam")).to eq(2)
+      expect(@battle_list.order[0, 6].count("Chris")).to eq(3)
     end
   
   end
@@ -37,12 +37,12 @@ describe Encounter do
   describe "table of all current APs" do
     
     it "starts each character off with a half of their maximum action points" do
-      @battle_list.current_aps.should == {"Bob" => 5, "Sam" => 5, "Chris" => 6}
+      expect(@battle_list.current_aps).to eq({"Bob" => 5, "Sam" => 5, "Chris" => 6})
     end
   
     it "increments character's ap each turn" do
       @battle_list.next_turn
-      @battle_list.current_aps.should == {"Bob" => 6, "Sam" => 6, "Chris" => 7}
+      expect(@battle_list.current_aps).to eq({"Bob" => 6, "Sam" => 6, "Chris" => 7})
     end    
     
   end
@@ -51,7 +51,7 @@ describe Encounter do
   
     it "keeps track of who's turn it is" do
       @battle_list.order.each do |character|
-        @battle_list.current_player.should == character
+        expect(@battle_list.current_player).to eq(character)
         @battle_list.next_turn
       end
     end
@@ -61,33 +61,33 @@ describe Encounter do
   describe "the current ap of the character up to move" do
   
     it "keeps track of the initial action points of the first character" do
-      @battle_list.current_ap.should == @battle_list.current_aps[@battle_list.current_player]
+      expect(@battle_list.current_ap).to eq(@battle_list.current_aps[@battle_list.current_player])
     end
   
     it "returns the action points of a character after one turn" do
       @battle_list.next_turn
-      @battle_list.current_ap.should == @battle_list.current_aps[@battle_list.current_player]
+      expect(@battle_list.current_ap).to eq(@battle_list.current_aps[@battle_list.current_player])
     end
   
     it "returns the action points of a character after two turns" do
       2.times { @battle_list.next_turn }
-      @battle_list.current_ap.should == @battle_list.current_aps[@battle_list.current_player]
+      expect(@battle_list.current_ap).to eq(@battle_list.current_aps[@battle_list.current_player])
     end  
   
     it "returns the action points of a character after multiple turns" do
       3.times { @battle_list.next_turn }
-      @battle_list.current_ap.should == @battle_list.current_aps[@battle_list.current_player]
+      expect(@battle_list.current_ap).to eq(@battle_list.current_aps[@battle_list.current_player])
     end
   
     it "returns ten action points after many rounds with no actions taken" do
       50.times { @battle_list.next_turn }
-      @battle_list.current_ap.should == 10
+      expect(@battle_list.current_ap).to eq(10)
     end
   
     it "allows you to spend ap" do
       initial_ap = @battle_list.current_aps[@battle_list.current_player]
       @battle_list.spend_ap(5)
-      @battle_list.current_ap.should == initial_ap - 5
+      expect(@battle_list.current_ap).to eq(initial_ap - 5)
     end
   
   end

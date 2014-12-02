@@ -12,7 +12,7 @@ describe Character do
   describe "mocking in surrogate" do
 
     it "implements the methods defined in MockCharacter" do
-      MockCharacter.should be_substitutable_for(Character)
+      expect(MockCharacter).to be_substitutable_for(Character)
     end
 
   end
@@ -20,23 +20,23 @@ describe Character do
   describe "initialization of default character" do
 
     it "creates a character with a name" do
-      @default_character.name.should == "Pookie Pookerson"
+      expect(@default_character.name).to eq("Pookie Pookerson")
     end
 
     it "creates a character with two moves" do
-      @default_character.moves.should == 2
+      expect(@default_character.moves).to eq(2)
     end
 
     it "creates a character with a default 'active' status" do
-      @default_character.status.should == :active
+      expect(@default_character.status).to eq(:active)
     end
 
     it "creates a character with ten action points" do
-      @default_character.action_points.should == 10
+      expect(@default_character.action_points).to eq(10)
     end
 
     it "creates a character with three wounds" do
-      @default_character.wounds.should == 3
+      expect(@default_character.wounds).to eq(3)
     end
 
   end
@@ -44,23 +44,23 @@ describe Character do
   describe "initialization of a customized character" do
 
     it "creates a character with a name" do
-      @custom_character.name.should == "Bob"
+      expect(@custom_character.name).to eq("Bob")
     end
 
     it "creates a character with a custom number of moves" do
-      @custom_character.moves.should == 3
+      expect(@custom_character.moves).to eq(3)
     end
 
     it "creates a character with a custom status" do
-      @custom_character.status.should == :unconscious
+      expect(@custom_character.status).to eq(:unconscious)
     end
 
     it "creates a character with a custom number of action points" do
-      @custom_character.action_points.should == 12
+      expect(@custom_character.action_points).to eq(12)
     end
 
     it "creates a character with a custom number of wounds" do
-      @custom_character.wounds.should == 5
+      expect(@custom_character.wounds).to eq(5)
     end
 
   end
@@ -69,22 +69,22 @@ describe Character do
 
     it "can be changed to dead" do
       @default_character.has_died
-      @default_character.status.should == :dead
+      expect(@default_character.status).to eq(:dead)
     end
 
     it "can be changed to unconscious" do
       @default_character.has_been_knocked_out
-      @default_character.status.should == :unconscious
+      expect(@default_character.status).to eq(:unconscious)
     end
 
     it "can be changed to inactive" do
       @custom_character.is_inactive
-      @custom_character.status.should == :inactive
+      expect(@custom_character.status).to eq(:inactive)
     end
 
     it "can be changed to active" do
       @custom_character.is_active
-      @custom_character.status.should == :active
+      expect(@custom_character.status).to eq(:active)
     end
 
   end
