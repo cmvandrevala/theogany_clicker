@@ -70,18 +70,6 @@ describe BattleRoster do
 
     end
 
-    context "statuses" do
-
-      it "gives a table of the statuses of each character" do
-        expect(@roster.table(:status)).to eq({ "Mockie Mockerson" => :active, "Dockie Dockerson" => :active, "Rockie Rockerson" => :active })
-      end
-
-      it "gives the status for one character" do
-        expect(@roster.table(:status, "Mockie Mockerson")).to eq(:active)
-      end
-
-    end
-
   end
 
 end

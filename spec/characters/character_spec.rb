@@ -6,7 +6,7 @@ describe Character do
 
   before(:each) do
     @default_character = Character.new({name: "Pookie Pookerson"})
-    @custom_character = Character.new({name: "Bob", moves: 3, status: :unconscious, action_points: 12, wounds: 5})
+    @custom_character = Character.new({name: "Bob", moves: 3, action_points: 12})
   end
 
   describe "mocking in surrogate" do
@@ -27,16 +27,8 @@ describe Character do
       expect(@default_character.moves).to eq(2)
     end
 
-    it "creates a character with a default 'active' status" do
-      expect(@default_character.status).to eq(:active)
-    end
-
     it "creates a character with ten action points" do
       expect(@default_character.action_points).to eq(10)
-    end
-
-    it "creates a character with three wounds" do
-      expect(@default_character.wounds).to eq(3)
     end
 
   end
@@ -51,40 +43,8 @@ describe Character do
       expect(@custom_character.moves).to eq(3)
     end
 
-    it "creates a character with a custom status" do
-      expect(@custom_character.status).to eq(:unconscious)
-    end
-
     it "creates a character with a custom number of action points" do
       expect(@custom_character.action_points).to eq(12)
-    end
-
-    it "creates a character with a custom number of wounds" do
-      expect(@custom_character.wounds).to eq(5)
-    end
-
-  end
-
-  describe "character status" do
-
-    it "can be changed to dead" do
-      @default_character.has_died
-      expect(@default_character.status).to eq(:dead)
-    end
-
-    it "can be changed to unconscious" do
-      @default_character.has_been_knocked_out
-      expect(@default_character.status).to eq(:unconscious)
-    end
-
-    it "can be changed to inactive" do
-      @custom_character.is_inactive
-      expect(@custom_character.status).to eq(:inactive)
-    end
-
-    it "can be changed to active" do
-      @custom_character.is_active
-      expect(@custom_character.status).to eq(:active)
     end
 
   end
