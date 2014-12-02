@@ -13,7 +13,7 @@ class Character
   private
 
   def defaults
-    { :moves => 2, :status => :active, :action_points => 10, :wounds => 3 }
+    { :moves => 2, :action_points => 10 }
   end
 
 end
